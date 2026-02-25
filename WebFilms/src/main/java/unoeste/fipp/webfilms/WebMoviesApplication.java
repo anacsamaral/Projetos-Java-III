@@ -9,5 +9,5 @@ public class WebMoviesApplication {
     public static void main(String[] args) {
         SpringApplication.run(WebMoviesApplication.class, args);
     }
-    
+
 }
