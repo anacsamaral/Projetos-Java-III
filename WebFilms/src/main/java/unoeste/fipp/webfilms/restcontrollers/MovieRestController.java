@@ -69,6 +69,11 @@ public class MovieRestController {
         }
     }
 
+    @GetMapping("list-movies")
+    public ResponseEntity<Object> listMovies() {
+        return ResponseEntity.ok().body(movieRepository);
+    }
+
     @GetMapping("list-keyword")
     public ResponseEntity<Object> getMoviesKeyword(@RequestParam(value = "keyword") String keyword) {
         List<Movie> auxList = new ArrayList<>();
