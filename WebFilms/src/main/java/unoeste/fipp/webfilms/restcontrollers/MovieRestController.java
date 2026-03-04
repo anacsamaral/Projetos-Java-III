@@ -74,6 +74,21 @@ public class MovieRestController {
         return ResponseEntity.ok().body(movieRepository);
     }
 
+    @GetMapping("list-genre")
+    public ResponseEntity<Object> getMoviesGenre(@RequestParam(value = "genre") String keyword) {
+        List<Movie> auxList = new ArrayList<>();
+        for(Movie mov : movieRepository.getMovies()) {
+            if(mov.getCategory().toUpperCase().contains(keyword.toUpperCase()))
+                auxList.add(mov);
+        }
+        if(!auxList.isEmpty())
+            return ResponseEntity.ok().body(auxList);
+        else
+            return ResponseEntity.badRequest().body(new Erro("Nenhum filme encontrado",""));
+        // não pode retornar uma string pois é esperado um JSON
+        // ou retorna dentro do objeto movie, ou crie um objeto que represente erros (mais indicado)
+    }
+
     @GetMapping("list-keyword")
     public ResponseEntity<Object> getMoviesKeyword(@RequestParam(value = "keyword") String keyword) {
         List<Movie> auxList = new ArrayList<>();
