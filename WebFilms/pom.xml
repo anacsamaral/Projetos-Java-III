@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>unoeste.fipp</groupId>
-    <artifactId>WebFilms</artifactId>
+    <artifactId>webMovies</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>WebFilms</name>
-    <description>WebFilms</description>
+    <name>webMusics</name>
+    <description>webMusics</description>
     <url/>
     <licenses>
         <license/>
