@@ -11,7 +11,7 @@ function cadastrarFilmePoster(){
 }
 function cadastrarFilme(){
     const formMovie=document.forms[0];
-    if(formMovie.titulo.value.length==0){
+    if(formMovie.titulo.value.length===0){
         alert("Preencha todos os campos");
     }
     else{

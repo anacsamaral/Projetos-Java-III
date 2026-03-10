@@ -71,6 +71,7 @@ public class MovieRestController {
         else {
             try {
                 final String UPLOAD_FOLDER = "src/main/resources/static/posters/";
+                //final String UPLOAD_FOLDER = "src/main/resources/static/thumbs/";
                 String fileName = poster.getOriginalFilename();
                 File uploadFolder = new File(UPLOAD_FOLDER);
                 if (!uploadFolder.exists()) uploadFolder.mkdir();
