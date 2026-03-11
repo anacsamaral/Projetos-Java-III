@@ -1,0 +1,214 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #4B0082 0%, #0F171A 100%);
+    min-height: 100vh;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 20px;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #4B0082;
+    padding-bottom: 10px;
+}
+
+hr { display: none; }
+
+/* Dropdown Principal de Filtros */
+#filtros {
+    padding: 12px;
+    border-radius: 5px;
+    background: rgba(15, 23, 26, 0.8);
+    color: #ffffff;
+    border: 1px solid #4B0082;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 300px;
+    outline: none;
+}
+
+#filtros:focus { border-color: #FFD700; }
+
+/* Seções de Busca Específicas */
+div[id^="secao-"] {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(75, 0, 130, 0.5);
+    margin-bottom: 30px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px;
+    flex-wrap: wrap;
+}
+
+div[id^="secao-"] input[type="text"],
+div[id^="secao-"] select {
+    flex: 1;
+    min-width: 150px;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #4B0082;
+    background: rgba(15, 23, 26, 0.8);
+    color: #ffffff;
+    outline: none;
+    transition: 0.3s;
+}
+
+div[id^="secao-"] input[type="text"]:focus,
+div[id^="secao-"] select:focus {
+    border-color: #FFD700;
+}
+
+/* Botão de Pesquisa */
+button {
+    padding: 12px 25px;
+    background: #4B0082;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #FFD700;
+    color: #0F171A;
+}
+
+/* Tabela de Resultados */
+table {
+    width: 100%;
+    max-width: 1000px;
+    border-collapse: collapse;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+    border: 1px solid rgba(75, 0, 130, 0.3);
+}
+
+thead { background: #4B0082; }
+
+th, td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid rgba(75, 0, 130, 0.2);
+}
+
+th {
+    color: #FFD700;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+tr:hover { background: rgba(255, 255, 255, 0.05); }
+tr:last-child td { border-bottom: none; }
+
+header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilo do Logo CineFlow */
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+/* Container do menu */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Espaço entre os botões */
+    margin-bottom: 10px;
+}
+
+/* Transformando os links em botões arredondados */
+nav a {
+    text-decoration: none; /* Remove o sublinhado padrão */
+    color: #ffffff; /* Letra branca */
+    background: rgba(255, 255, 255, 0.1); /* Fundo levemente transparente */
+    padding: 8px 25px; /* Altura e largura internas */
+    border-radius: 20px; /* Bordas arredondadas (estilo pílula) */
+    font-size: 15px;
+    font-weight: 500;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borda sutil */
+    transition: all 0.3s ease; /* Transição suave para efeitos */
+}
+
+/* Efeito ao passar o mouse (Hover) */
+nav a:hover {
+    background: #FFD700; /* Dourado */
+    color: #0F171A; /* Texto escuro para dar contraste */
+    border-color: #FFD700;
+    transform: translateY(-2px); /* Efeito de botão sendo pressionado/levantado */
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3); /* Brilho dourado */
+}
+
+/* Destaque para a página atual (classe="active") */
+nav a.active {
+    background: #650580; /* Roxo claro */
+    border-color: #a366ff;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(101, 5, 128, 0.5);
+}
+
+#popover-poster {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#popover-poster span {
+    color: #ffffff;
+    font-size: 40px;
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#popover-poster span:hover {
+    color: #FFD700;
+}
+
+#imagem-popover {
+    max-width: 80%;
+    max-height: 80%;
+    border: 2px solid #4B0082;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}

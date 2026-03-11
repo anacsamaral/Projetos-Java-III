@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinema em Casa - Seu Catálogo de Filmes</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<header>
+    <div class="logo">Cinema em Casa 🎬</div>
+    <nav>
+        <a href="#" class="active">Início</a>
+        <a href="#carrossel">Destaques</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="/cadastro.html">Cadastrar</a>
+        <a href="/pesquisa.html">Pesquisar</a>
+    </nav>
+</header>
+
+<main>
+    <!-- Seção Filme Aleatório (Destaque) -->
+    <section id="destaque">
+        <h2>Filme do Dia</h2>
+        <div id="filme-sugerido" class="loading">Carregando sugestão...</div>
+    </section>
+
+    <!-- Carrossel de Filmes -->
+    <section id="carrossel">
+        <h2>Em Alta</h2>
+        <div class="carrossel-container">
+            <button class="carrossel-btn prev" onclick="rolarCarrossel('left')">←</button>
+            <div class="carrossel" id="carrossel-filmes">
+                <!-- Cards serão inseridos aqui via JavaScript -->
+                <div class="loading">Carregando filmes...</div>
+            </div>
+            <button class="carrossel-btn next" onclick="rolarCarrossel('right')">→</button>
+        </div>
+    </section>
+
+    <!-- Catálogo em Cards -->
+    <section id="catalogo">
+        <h2>Todos os Filmes</h2>
+        <div class="cards-grid" id="cards-filmes">
+            <!-- Cards serão inseridos aqui via JavaScript -->
+            <div class="loading">Carregando catálogo...</div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>© 2026 CineFlow - Todos os direitos reservados</p>
+</footer>
+
+<script>
+    // Função para buscar filmes (adaptada dos seus controllers)
+    async function carregarFilmes() {
+        try {
+            // Tenta buscar filmes por palavra-chave vazia (pode retornar todos)
+            const response = await fetch("http://localhost:8080/apis/list-keyword?keyword=");
+
+            if (response.status === 200) {
+                const filmes = await response.json();
+                return filmes;
+            } else {
+                // Fallback: se não funcionar, busca por gênero ou ano
+                console.log("Buscando filmes alternativos...");
+                return [];
+            }
+        } catch (error) {
+            console.error("Erro ao carregar filmes:", error);
+            return [];
+        }
+    }
+
+    // Função para carregar filme aleatório (usando seu indexcontroller.js)
+    function carregarFilmeAleatorio() {
+        const filmeSugerido = document.getElementById("filme-sugerido");
+
+        fetch("http://localhost:8080/apis/random-movie")
+            .then(response => {
+                if (!response.ok) throw new Error("Erro ao buscar filme");
+                return response.json();
+            })
+            .then(movie => {
+                filmeSugerido.innerHTML = `🎬 <strong>Assista ainda hoje:</strong> ${movie.title} (${movie.year})`;
+            })
+            .catch(error => {
+                filmeSugerido.innerHTML = "🍿 Nenhum filme cadastrado ainda. Que tal <a href='/cadastro.html' style='color: #FFD700;'>cadastrar um</a>?";
+            });
+    }
+
+    // Função para gerar HTML dos cards
+    function gerarCards(filmes, tipo = 'carrossel') {
+        if (!filmes || filmes.length === 0) {
+            return `<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #aaa;">
+                    Nenhum filme encontrado. <a href="/cadastro.html" style="color: #FFD700;">Cadastre o primeiro!</a>
+                </div>`;
+        }
+
+        let html = '';
+
+        for (let movie of filmes) {
+            const titulo = movie.title || 'Título não informado';
+            const ano = movie.year || 'Ano não informado';
+            const genero = movie.category?.nome || 'Gênero não informado';
+
+            // Define a imagem (thumbnail ou poster)
+            let imagemHtml = '';
+            if (movie.thumb) {
+                imagemHtml = `<img src="/thumbs/${movie.thumb}" alt="${titulo}" loading="lazy">`;
+            } else if (movie.poster) {
+                imagemHtml = `<img src="/posters/${movie.poster}" alt="${titulo}" loading="lazy">`;
+            } else {
+                imagemHtml = `<div style="height: 250px; background: #333; display: flex; align-items: center; justify-content: center; color: #666;">
+                        🎬<br>Sem imagem
+                    </div>`;
+            }
+
+            const card = tipo === 'carrossel'
+                ? `<div class="carrossel-card" onclick="verDetalhes('${titulo}', '${ano}', '${genero}')">
+                        ${imagemHtml}
+                        <div class="card-info">
+                            <h3>${titulo}</h3>
+                            <p>${ano}</p>
+                        </div>
+                       </div>`
+                : `<div class="movie-card" onclick="verDetalhes('${titulo}', '${ano}', '${genero}')">
+                        ${imagemHtml}
+                        <div class="movie-info">
+                            <h3>${titulo}</h3>
+                            <div class="ano">${ano}</div>
+                            <span class="genero">${genero}</span>
+                        </div>
+                       </div>`;
+
+            html += card;
+        }
+
+        return html;
+    }
+
+    // Função para mostrar detalhes do filme (pode ser expandida)
+    function verDetalhes(titulo, ano, genero) {
+        alert(`🎬 ${titulo}\n📅 ${ano}\n🏷️ ${genero}`);
+        // Aqui você poderia redirecionar para uma página de detalhes
+    }
+
+    // Função para rolar o carrossel
+    function rolarCarrossel(direcao) {
+        const carrossel = document.getElementById('carrossel-filmes');
+        const scrollAmount = 300;
+
+        if (direcao === 'left') {
+            carrossel.scrollLeft -= scrollAmount;
+        } else {
+            carrossel.scrollLeft += scrollAmount;
+        }
+    }
+
+    // Função principal para carregar todos os filmes e preencher as seções
+    async function carregarTodosFilmes() {
+        // Mostra loading
+        document.getElementById('carrossel-filmes').innerHTML = '<div class="loading">Carregando...</div>';
+        document.getElementById('cards-filmes').innerHTML = '<div class="loading">Carregando...</div>';
+
+        // Carrega filme aleatório
+        carregarFilmeAleatorio();
+
+        // Carrega lista de filmes
+        const filmes = await carregarFilmes();
+
+        // Preenche carrossel (primeiros 10 filmes)
+        const carrosselHtml = gerarCards(filmes.slice(0, 10), 'carrossel');
+        document.getElementById('carrossel-filmes').innerHTML = carrosselHtml;
+
+        // Preenche grid de cards (todos os filmes)
+        const cardsHtml = gerarCards(filmes, 'grid');
+        document.getElementById('cards-filmes').innerHTML = cardsHtml;
+    }
+
+    // Inicia o carregamento quando a página abrir
+    document.addEventListener('DOMContentLoaded', carregarTodosFilmes);
+</script>
+</body>
+</html>
