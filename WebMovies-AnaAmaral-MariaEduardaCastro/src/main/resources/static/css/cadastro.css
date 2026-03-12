@@ -23,9 +23,8 @@ h1 {
     padding-bottom: 10px;
 }
 
-hr { display: none; } /* Oculta a linha padrão do HTML para usar o border-bottom do h1 */
+hr { display: none; }
 
-/* Contêiner do Formulário */
 form {
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(10px);
@@ -46,7 +45,6 @@ label {
     font-weight: 500;
 }
 
-/* Campos de Input e Select */
 input[type="text"], select {
     width: 100%;
     padding: 12px;
@@ -69,7 +67,6 @@ input[type="file"] {
     margin-top: 5px;
 }
 
-/* Botão Centralizado */
 button {
     background: #4B0082;
     color: #ffffff;
@@ -97,7 +94,6 @@ header {
     margin-bottom: 20px;
 }
 
-/* Estilo do Logo CineFlow */
 .logo {
     font-size: 28px;
     font-weight: bold;
@@ -108,7 +104,6 @@ header {
     display: inline-block;
 }
 
-/* Container do menu */
 nav {
     display: flex;
     justify-content: center;
@@ -116,31 +111,28 @@ nav {
     margin-bottom: 10px;
 }
 
-/* Transformando os links em botões arredondados */
 nav a {
-    text-decoration: none; /* Remove o sublinhado padrão */
-    color: #ffffff; /* Letra branca */
-    background: rgba(255, 255, 255, 0.1); /* Fundo levemente transparente */
-    padding: 8px 25px; /* Altura e largura internas */
-    border-radius: 20px; /* Bordas arredondadas (estilo pílula) */
+    text-decoration: none;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 25px;
+    border-radius: 20px;
     font-size: 15px;
     font-weight: 500;
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Borda sutil */
-    transition: all 0.3s ease; /* Transição suave para efeitos */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
 }
 
-/* Efeito ao passar o mouse (Hover) */
 nav a:hover {
-    background: #FFD700; /* Dourado */
-    color: #0F171A; /* Texto escuro para dar contraste */
+    background: #FFD700;
+    color: #0F171A;
     border-color: #FFD700;
-    transform: translateY(-2px); /* Efeito de botão sendo pressionado/levantado */
-    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3); /* Brilho dourado */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
 }
 
-/* Destaque para a página atual (classe="active") */
 nav a.active {
-    background: #650580; /* Roxo claro */
+    background: #650580;
     border-color: #a366ff;
     font-weight: bold;
     box-shadow: 0 0 10px rgba(101, 5, 128, 0.5);

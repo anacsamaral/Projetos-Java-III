@@ -13,7 +13,6 @@ body {
     color: #ffffff;
 }
 
-/* Header */
 header {
     background-color: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(10px);
@@ -48,7 +47,6 @@ nav a:hover, nav a.active {
     background-color: #4B0082;
 }
 
-/* Main Content */
 main {
     padding: 40px;
     max-width: 1400px;
@@ -74,7 +72,7 @@ h2::after {
     background: linear-gradient(90deg, #4B0082, transparent);
 }
 
-/* Carrossel */
+
 .carrossel-container { position: relative; margin: 20px 0 40px; }
 
 .carrossel {
@@ -119,7 +117,7 @@ h2::after {
 .carrossel-card h3 { font-size: 16px; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .carrossel-card p { font-size: 14px; color: #cccccc; }
 
-/* Botões do carrossel */
+
 .carrossel-btn {
     position: absolute;
     top: 50%;
@@ -143,7 +141,7 @@ h2::after {
 .carrossel-btn.prev { left: -20px; }
 .carrossel-btn.next { right: -20px; }
 
-/* Cards Grid */
+
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -179,12 +177,10 @@ h2::after {
 .movie-info .ano { font-size: 14px; color: #aaa; margin-bottom: 5px; }
 .movie-info .genero { font-size: 13px; background: rgba(75, 0, 130, 0.3); display: inline-block; padding: 3px 10px; border-radius: 15px; color: #FFD700; }
 
-/* Loading */
 .loading { text-align: center; padding: 40px; color: #aaa; font-size: 18px; }
 .loading::after { content: ''; display: inline-block; width: 20px; height: 20px; margin-left: 10px; border: 3px solid #4B0082; border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* Footer */
 footer {
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(10px);

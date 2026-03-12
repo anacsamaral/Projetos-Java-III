@@ -67,8 +67,8 @@ public class MovieRestController {
     }
 
     @GetMapping("list-genre/{genero}")
-    public ResponseEntity<Object> getListCategory(@PathVariable(value = "genero") String genero) {
-        Category category = categoryRepository.findById(genero);
+    public ResponseEntity<Object> getListCategory(@PathVariable(value = "genero") String genre) {
+        Category category = categoryRepository.findById(genre);
 
         if (category == null)
             return ResponseEntity.badRequest().body(new Erro("Gênero não encontrado", ""));
@@ -146,16 +146,27 @@ public class MovieRestController {
                 final String UPLOAD_THUMB = "src/main/resources/static/thumbs/";
 
                 String fileName = poster.getOriginalFilename();
+                String thumbName = "thumb_" + fileName;
+
                 File uploadFolder = new File(UPLOAD_FOLDER);
+                File thumbFolder = new File(UPLOAD_THUMB);
 
                 if (!uploadFolder.exists()) uploadFolder.mkdirs();
+                if (!thumbFolder.exists()) thumbFolder.mkdirs();
 
-                poster.transferTo(new File(uploadFolder.getAbsolutePath() + "\\" + fileName));
+                File arquivoOriginal = new File(uploadFolder.getAbsolutePath() + "\\" + fileName);
+                poster.transferTo(arquivoOriginal);
+
+                Thumbnails.of(arquivoOriginal)
+                        .size(200, 200)
+                        .outputFormat("jpg")
+                        .toFile(new File(thumbFolder.getAbsolutePath() + "\\" + thumbName));
 
                 Category categoria = categoryRepository.findById(genero);
                 Movie movie = new Movie(titulo, ano, categoria);
 
                 movie.setPoster(fileName);
+                movie.setThumb(thumbName);
                 movieRepository.getMovies().add(movie);
 
                 return ResponseEntity.ok().body(movie);

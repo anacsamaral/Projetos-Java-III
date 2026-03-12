@@ -21,10 +21,8 @@ function gerarLinhas(jsonList) {
 
     let dados = "";
     for (let movie of jsonList) {
-        // Verifica se o filme tem thumbnail ou poster
         let imgSrc = movie.thumb ? `/thumbs/${movie.thumb}` : (movie.poster ? `/posters/${movie.poster}` : null);
 
-        // Se a imagem existir, gera a tag IMG que clica e abre o popover (Itens c e d)
         let tdImagem = imgSrc
             ? `<td>
                  <img src="${imgSrc}" style="width:50px; height:auto; border-radius:4px; border: 1px solid #ddd; cursor:pointer;" 
@@ -42,21 +40,18 @@ function gerarLinhas(jsonList) {
     return dados;
 }
 
-// --- FUNÇÕES DO POPOVER ---
-// CORRIGIDO: Removido o espaço do parâmetro "caminhoPosterOriginal"
 function abrirPopover(caminhoPosterOriginal) {
     let popover = document.getElementById('popover-poster');
     let imagemPopover = document.getElementById('imagem-popover');
-    imagemPopover.src = caminhoPosterOriginal; // Carrega a imagem grande
-    popover.style.display = 'flex'; // Mostra a janela escura
+    imagemPopover.src = caminhoPosterOriginal;
+    popover.style.display = 'flex';
 }
 
 function fecharPopover() {
     let popover = document.getElementById('popover-poster');
-    popover.style.display = 'none'; // Esconde a janela
+    popover.style.display = 'none';
 }
 
-// --- RESTO DAS SUAS FUNÇÕES ORIGINAIS ---
 function pesquisarFilmesGenero(){
     const genero=document.getElementById('genero').value;
     const resultado =document.getElementById('resultado');

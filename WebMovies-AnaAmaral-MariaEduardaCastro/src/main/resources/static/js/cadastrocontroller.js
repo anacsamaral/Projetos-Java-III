@@ -1,44 +1,45 @@
 function cadastrarFilmePoster(){
-    const fuser = document.forms[0];
+    const formulario = document.forms[0];
     fetch("http://localhost:8080/apis/add-movie-poster",
-        { method: 'POST', body: new FormData(fuser)})
-        .then(response=>response.json())
-        .then(json=>{
-            alert("Filme "+json.title+" cadastrado com sucesso!");
-            fuser.reset();
+        { method: 'POST', body: new FormData(formulario)})
+        .then(resposta => resposta.json())
+        .then(json => {
+            alert("Filme " + json.title + " cadastrado com sucesso!");
+            formulario.reset();
         })
-        .catch(error=> alert("Problemas ao cadastrar o filme"))
+        .catch(erro => alert("Problemas ao cadastrar o filme"))
 }
+
 function cadastrarFilme(){
-    const formMovie=document.forms[0];
-    if(formMovie.titulo.value.length===0){
+    const formularioFilme = document.forms[0];
+    if(formularioFilme.titulo.value.length === 0){
         alert("Preencha todos os campos");
     }
     else{
-        const movie={};//new Object();
-        movie.title=formMovie.titulo.value;
-        movie.year=formMovie.ano.value;
-        movie.category=formMovie.genero.value;
-        //alert(JSON.stringify(movie));
-        if(enviarFilme(JSON.stringify(movie))) {
-            formMovie.reset();
+        const filme = {};
+        filme.title = formularioFilme.titulo.value;
+        filme.year = formularioFilme.ano.value;
+        filme.category = formularioFilme.genero.value;
+
+        if(enviarFilme(JSON.stringify(filme))) {
+            formularioFilme.reset();
         }
-        //formMovie.reset();
     }
 }
-function enviarFilme(filme){
-    const requestOptions = {
+
+function enviarFilme(dadosFilme){
+    const opcoesRequisicao = {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: filme
+        body: dadosFilme
     };
-    fetch("http://localhost:8080/apis/add-movie", requestOptions)
-        .then(response => response.json())
+    fetch("http://localhost:8080/apis/add-movie", opcoesRequisicao)
+        .then(resposta => resposta.json())
         .then(json => {
-            alert("Filme "+json.title+" cadastrado com sucesso!");
+            alert("Filme " + json.title + " cadastrado com sucesso!");
             return true;
         })
-        .catch(error => {
+        .catch(erro => {
             alert("Problemas ao cadastrar o filme");
             return false;
         })
