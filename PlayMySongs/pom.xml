@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>unoeste.fipp</groupId>
-    <artifactId>PlayMySongs</artifactId>
+    <artifactId>SpringPlayMySongs</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>PlayMySongs</name>
-    <description>PlayMySongs</description>
+    <name>SpringPlayMySongs</name>
+    <description>SpringPlayMySongs</description>
     <url/>
     <licenses>
         <license/>

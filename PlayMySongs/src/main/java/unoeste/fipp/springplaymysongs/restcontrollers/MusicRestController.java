@@ -1,4 +1,4 @@
-package unoeste.fipp.playmysongs.restcontrollers;
+package unoeste.fipp.springplaymysongs.restcontrollers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import unoeste.fipp.playmysongs.entities.Music;
-import unoeste.fipp.playmysongs.services.MusicService;
+import unoeste.fipp.springplaymysongs.entities.Music;
+import unoeste.fipp.springplaymysongs.services.MusicService;
 
 import java.util.List;
 
@@ -15,16 +15,14 @@ import java.util.List;
 @RestController
 @RequestMapping("apis")
 public class MusicRestController {
-
     @Autowired
     private MusicService musicService;
 
     @GetMapping("find-musics")
-    public ResponseEntity<Object> findMusics(String keyword){
+    public ResponseEntity<Object> findMusic(String keyword){
         if(!keyword.isEmpty()){
-            List<Music> musicList = musicService.findMusicsByKeyword(keyword);
+            List<Music> musicList=musicService.findMusicsByKeyWord(keyword);
             return ResponseEntity.ok(musicList);
-
         }
         return ResponseEntity.badRequest().body("objeto de erro");
     }
