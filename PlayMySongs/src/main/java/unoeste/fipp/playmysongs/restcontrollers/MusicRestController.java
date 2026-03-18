@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import unoeste.fipp.playmysongs.entities.Music;
+import unoeste.fipp.playmysongs.entities.Style;
 import unoeste.fipp.playmysongs.services.MusicService;
 
 import java.util.List;
@@ -25,5 +26,11 @@ public class MusicRestController {
             return ResponseEntity.ok(musicList);
         }
         return ResponseEntity.badRequest().body("objeto de erro");
+    }
+
+    @GetMapping("get-music-styles")
+    public ResponseEntity<Object> findMusicStyles() {
+        List<Style> styleList = musicService.findMusicStyles();
+        return ResponseEntity.ok(styleList);
     }
 }
