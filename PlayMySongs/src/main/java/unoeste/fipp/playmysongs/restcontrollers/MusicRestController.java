@@ -15,16 +15,14 @@ import java.util.List;
 @RestController
 @RequestMapping("apis")
 public class MusicRestController {
-
     @Autowired
     private MusicService musicService;
 
     @GetMapping("find-musics")
-    public ResponseEntity<Object> findMusics(String keyword){
+    public ResponseEntity<Object> findMusic(String keyword){
         if(!keyword.isEmpty()){
-            List<Music> musicList = musicService.findMusicsByKeyword(keyword);
+            List<Music> musicList=musicService.findMusicsByKeyWord(keyword);
             return ResponseEntity.ok(musicList);
-
         }
         return ResponseEntity.badRequest().body("objeto de erro");
     }

@@ -8,11 +8,10 @@ import java.util.List;
 
 @Service
 public class MusicService {
-    public List<Music> findMusicsByKeyword(String keyword){
+    public List<Music> findMusicsByKeyWord(String keyword){
         List<Music> musicList = new ArrayList<>();
-        musicList.add(new Music("Baby","mpb","Rita Lee"));
-        musicList.add(new Music("Malandragem","mpb","Cássia Eller"));
-
+        musicList.add(new Music("Jetski","funk","Pedro Sampaio"));
+        musicList.add(new Music("Para sempre com você","sertanejo","Jorge e Mateus"));
         return musicList;
     }
 }
