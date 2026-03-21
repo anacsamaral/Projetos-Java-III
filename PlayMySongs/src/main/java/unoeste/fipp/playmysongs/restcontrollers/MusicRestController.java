@@ -33,4 +33,6 @@ public class MusicRestController {
         List<Style> styleList = musicService.findMusicStyles();
         return ResponseEntity.ok(styleList);
     }
+
+
 }
