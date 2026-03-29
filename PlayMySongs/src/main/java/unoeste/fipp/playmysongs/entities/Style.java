@@ -1,11 +1,19 @@
 package unoeste.fipp.playmysongs.entities;
 
 import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "estilos")
 public class Style {
+
+    @Id
     private ObjectId _id;
+
     private String nome;
     private String descricao;
+
+    public Style() {}
 
     public Style(ObjectId _id, String nome, String descricao) {
         this._id = _id;

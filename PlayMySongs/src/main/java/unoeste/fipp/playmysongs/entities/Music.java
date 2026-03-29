@@ -1,12 +1,33 @@
 package unoeste.fipp.playmysongs.entities;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "musicas")
 public class Music {
-    private String titulo, estilo, artista, musicFileName;
+
+    @Id
+    private String id;
+
+    private String titulo;
+    private String estilo;
+    private String artista;
+    private String musicFileName;
+
+    public Music() {}
 
     public Music(String titulo, String estilo, String artista) {
         this.titulo = titulo;
         this.estilo = estilo;
         this.artista = artista;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitulo() {
