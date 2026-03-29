@@ -1,0 +1,50 @@
+:root {
+    --neon-purple: #9d4edd;
+    --neon-hover: #c77dff;
+}
+
+body {
+    background: linear-gradient(135deg, #121212 0%, #1a0b2e 100%);
+    min-height: 100vh;
+}
+
+.btn-primary {
+    background-color: var(--neon-purple);
+    border-color: var(--neon-purple);
+    border-radius: 30px;
+    padding: 10px 24px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: var(--neon-hover);
+    border-color: var(--neon-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(157, 78, 221, 0.4);
+}
+
+.btn-outline-primary {
+    color: var(--neon-purple);
+    border-color: var(--neon-purple);
+    border-radius: 30px;
+    padding: 10px 24px;
+    font-weight: 600;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--neon-purple);
+    border-color: var(--neon-purple);
+    color: #ffffff;
+}
+
+.text-neon {
+    color: var(--neon-purple);
+}
+
+.glass-card {
+    background: rgba(30, 30, 30, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+}

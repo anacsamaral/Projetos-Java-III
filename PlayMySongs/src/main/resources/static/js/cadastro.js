@@ -1,64 +1,41 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-    // 1. CARREGAR ESTILOS MUSICAIS DA API
     fetch('http://localhost:8080/apis/get-music-styles')
-        .then(response => response.json())
+        .then(res => res.json())
         .then(estilos => {
-            const selectEstilo = document.getElementById('estiloMusical');
-            selectEstilo.innerHTML = '<option value="" selected>Selecione um estilo:</option>';
-
-            // Preenche o combobox com os estilos vindos do MongoDB
-            estilos.forEach(estilo => {
-                selectEstilo.innerHTML += `<option value="${estilo.nome}">${estilo.nome}</option>`;
+            const select = document.getElementById('estiloMusical');
+            select.innerHTML = '<option value="">Selecione um estilo...</option>';
+            estilos.forEach(est => {
+                select.innerHTML += `<option value="${est.nome}">${est.nome}</option>`;
             });
-        })
-        .catch(error => console.error('Erro ao carregar estilos:', error));
+        }).catch(err => console.error(err));
 
-    // 2. ENVIAR FORMULÁRIO (Upload da Música)
-    document.getElementById('formCadastro').addEventListener('submit', async function(event) {
-        event.preventDefault(); // Evita que a página recarregue
-
+    document.getElementById('formCadastro').addEventListener('submit', async (e) => {
+        e.preventDefault();
         const divMensagem = document.getElementById('mensagem');
-        divMensagem.innerHTML = '<div class="alert alert-info mt-3">Enviando...</div>';
+        const arquivo = document.getElementById('formFile').files[0];
 
-        const arquivoInput = document.getElementById('formFile');
-        const arquivo = arquivoInput.files[0];
-
-        // Validação JS solicitada no enunciado
         if (arquivo.type !== 'audio/mpeg' && arquivo.type !== 'audio/ogg') {
-            divMensagem.innerHTML = '<div class="alert alert-danger mt-3">Erro: O arquivo deve ser no formato MP3 ou OGG.</div>';
+            divMensagem.innerHTML = '<div class="alert alert-danger">Apenas MP3 ou OGG.</div>';
             return;
         }
 
-        // Monta o FormData para enviar textos e arquivo juntos
         const formData = new FormData();
         formData.append('nome', document.getElementById('tituloMusica').value);
-        formData.append('estilo', document.getElementById('estiloMusical').value);
         formData.append('artista', document.getElementById('artista').value);
+        formData.append('estilo', document.getElementById('estiloMusical').value);
         formData.append('file', arquivo);
 
+        divMensagem.innerHTML = '<div class="alert alert-info">Enviando para o servidor...</div>';
+
         try {
-            const response = await fetch('http://localhost:8080/apis/music-upload', {
-                method: 'POST',
-                body: formData
-            });
+            const response = await fetch('http://localhost:8080/apis/music-upload', { method: 'POST', body: formData });
+            if (!response.ok) throw new Error(await response.text());
 
-            if (!response.ok) {
-                const errorMsg = await response.text();
-                throw new Error(errorMsg);
-            }
-
-            const musicaSalva = await response.json();
-
-            // Mostra mensagem de sucesso com o nome gerado pelo Java
-            divMensagem.innerHTML = `<div class="alert alert-success mt-3">Sucesso! Arquivo gerado: <b>${musicaSalva.musicFileName}</b></div>`;
-
-            // Limpa o formulário para o próximo cadastro
+            const json = await response.json();
+            divMensagem.innerHTML = `<div class="alert alert-success">Sucesso! Salvo como: <b>${json.musicFileName}</b></div>`;
             document.getElementById('formCadastro').reset();
-
         } catch (error) {
-            divMensagem.innerHTML = `<div class="alert alert-danger mt-3">Erro no servidor: ${error.message}</div>`;
+            divMensagem.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
         }
     });
-
 });
