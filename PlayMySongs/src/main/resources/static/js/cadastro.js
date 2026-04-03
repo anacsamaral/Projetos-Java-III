@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. Carrega os estilos
     fetch('http://localhost:8080/apis/get-music-styles')
         .then(res => res.json())
         .then(estilos => {
@@ -9,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }).catch(err => console.error(err));
 
+    // 2. Lida com o Envio
     document.getElementById('formCadastro').addEventListener('submit', async (e) => {
         e.preventDefault();
         const divMensagem = document.getElementById('mensagem');
