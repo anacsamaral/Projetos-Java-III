@@ -6,6 +6,9 @@
       <list>
         <option value="$PROJECT_DIR$/AloSpring/pom.xml" />
         <option value="$PROJECT_DIR$/WebFilms/pom.xml" />
+        <option value="$PROJECT_DIR$/PlayMySongs2/pom.xml" />
+        <option value="$PROJECT_DIR$/WebMovies/pom.xml" />
+        <option value="$PROJECT_DIR$/PlayMySongs/pom.xml" />
       </list>
     </option>
   </component>
