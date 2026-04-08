@@ -6,9 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="PlayMySongs" />
         <module name="WebMovies" />
         <module name="AloSpring" />
-        <module name="PlayMySongs" />
+        <module name="AloSpringData" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -18,6 +19,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="AloSpring" options="-parameters" />
+      <module name="AloSpringData" options="-parameters" />
       <module name="PlayMySongs" options="-parameters" />
       <module name="WebFilms" options="-parameters" />
       <module name="WebMovies" options="-parameters" />
