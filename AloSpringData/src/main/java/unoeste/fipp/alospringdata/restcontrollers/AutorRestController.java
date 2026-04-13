@@ -42,8 +42,8 @@ public class AutorRestController {
     }
 
     @GetMapping("/kw/{palavraChave}")
-    public ResponseEntity<Object> buscarPorPalavraChave(String palavraCahve){
-        List<Autor> autorList = autorService.buscarporKW(palavraCahve);
+    public ResponseEntity<Object> buscarPorPalavraChave(@PathVariable String palavraChave){
+        List<Autor> autorList = autorService.buscarporKW(palavraChave);
         return ResponseEntity.ok(autorList);
     }
 }
