@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "autor")
 public class Autor {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // auto incremento
+    @GeneratedValue(strategy = GenerationType.AUTO) // auto incremento
     @Column(name = "aut_id")
     private Long id;
     @Column(name = "aut_nome")
@@ -26,14 +26,6 @@ public class Autor {
 
     public Autor(String nome, String nacionalidade) {
         this(0L,nome, nacionalidade);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Long getId() {
