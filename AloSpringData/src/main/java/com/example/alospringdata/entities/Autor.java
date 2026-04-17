@@ -1,19 +1,17 @@
-package unoeste.fipp.alospringdata.entities;
+package com.example.alospringdata.entities;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "autor")
+@Table(name="autor")
 public class Autor {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // auto incremento
-    @Column(name = "aut_id")
+    @GeneratedValue(strategy=GenerationType.IDENTITY) //auto incremento
+    @Column(name="aut_id")
     private Long id;
-
-    @Column(name = "aut_nome")
+    @Column(name="aut_nome")
     private String nome;
-
-    @Column(name = "aut_nacionalidade")
+    @Column(name="aut_nacionalidade")
     private String nacionalidade;
 
     public Autor() {
@@ -27,7 +25,7 @@ public class Autor {
     }
 
     public Autor(String nome, String nacionalidade) {
-        this(0L,nome, nacionalidade);
+        this(0L,nome,nacionalidade);
     }
 
     public Long getId() {

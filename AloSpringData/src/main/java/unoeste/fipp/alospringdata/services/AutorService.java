@@ -30,4 +30,17 @@ public class AutorService {
         List<Autor> autorList = autorRepository.findByKW(keyword.toUpperCase());
         return autorList;
     }
+
+    public Autor inserir(Autor autor){
+        autor = autorRepository.save(autor);
+        return autor;
+    }
+
+    public boolean apagar(Long id) {
+        if (buscarPorId(id) != null){
+            autorRepository.deleteById(id); // apenas deleteById não retorna se deu certo ou não, tem que buscar
+            return true;
+        }
+        return false;
+    }
 }
