@@ -10,6 +10,8 @@
         <module name="WebMovies" />
         <module name="AloSpring" />
         <module name="AloSpringData" />
+        <module name="SpringPlayMySongs" />
+        <module name="webMovies" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -21,8 +23,10 @@
       <module name="AloSpring" options="-parameters" />
       <module name="AloSpringData" options="-parameters" />
       <module name="PlayMySongs" options="-parameters" />
+      <module name="SpringPlayMySongs" options="-parameters" />
       <module name="WebFilms" options="-parameters" />
       <module name="WebMovies" options="-parameters" />
+      <module name="webMovies" options="-parameters" />
     </option>
   </component>
 </project>
