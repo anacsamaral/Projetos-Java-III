@@ -26,7 +26,8 @@ public class Livro {
             inverseJoinColumns = @JoinColumn(name = "aut_id"))
     private List<Autor> autores=new ArrayList<>();
 
-    @OneToMany(mappedBy = "livro", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "livro", fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Capitulo> capitulos=new ArrayList<>();
 
     public Livro() {
@@ -78,6 +79,7 @@ public class Livro {
         this.autores.add(autor);
     }
     public void addCapitulo(Capitulo capitulo){
+        capitulo.setLivro(this); // dizer a qual livro o capítulo pertence
         this.capitulos.add(capitulo);
     }
 
