@@ -28,14 +28,14 @@ public class LivroServiceTest {
     }
     @Test
     public void inserirLivro(){
-        Editora editora = editoraService.buscarPorId(2L);
-        Autor autor = autorService.buscarPorId(3L);
+        Editora editora=editoraService.buscarPorId(2L);
+        Autor autor=autorService.buscarPorId(3L);
         Livro livro=new Livro("Teste com Spring",editora);
         livro.addAutor(autor);
         livro.addCapitulo(new Capitulo("Introdução ao Spring",8));
         livro.addCapitulo(new Capitulo("Resumo",800));
 
-        Livro livroNovo = livroService.inserir(livro);
+        Livro livroNovo =livroService.inserir(livro);
         System.out.println("Id do novo livro: "+livroNovo.getId());
     }
     @Test
