@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("apis/acesso")
 public class AcessoRestController {
     @PostMapping("/autenticar")
-    public ResponseEntity<Object> autenticar(String login, String senha)
+    public ResponseEntity<Object> autenticar(String login, String senha, String nivel)
     {
         String token="";
         if (login.equals("meu@email") && senha.equals("123")) {
-            token = JWTTokenProvider.getToken(login, "ADM");
+            token = JWTTokenProvider.getToken(login, nivel);
             return new ResponseEntity<>(token, HttpStatus.OK);
         }
         else
