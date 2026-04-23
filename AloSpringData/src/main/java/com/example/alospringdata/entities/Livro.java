@@ -27,7 +27,7 @@ public class Livro {
     private List<Autor> autores=new ArrayList<>();
 
     @OneToMany(mappedBy = "livro", fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL, orphanRemoval = true)
+        cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Capitulo> capitulos=new ArrayList<>();
 
     public Livro() {
@@ -79,7 +79,7 @@ public class Livro {
         this.autores.add(autor);
     }
     public void addCapitulo(Capitulo capitulo){
-        capitulo.setLivro(this); // dizer a qual livro o capítulo pertence
+        capitulo.setLivro(this);
         this.capitulos.add(capitulo);
     }
 

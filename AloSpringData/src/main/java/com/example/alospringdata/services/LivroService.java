@@ -33,7 +33,7 @@ public class LivroService {
     }
     public boolean apagar(Long id){
         if(buscarPorId(id)!=null) {
-            // capituloRepository.deleteAllByLivro(new Livro(id,"",null)); -> cascade já faz isso
+            //capituloRepository.deleteAllByLivroId(id);
             livroRepository.deleteById(id);
             return true;
         }

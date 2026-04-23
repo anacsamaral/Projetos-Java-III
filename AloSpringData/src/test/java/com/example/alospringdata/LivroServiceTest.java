@@ -38,7 +38,6 @@ public class LivroServiceTest {
         Livro livroNovo =livroService.inserir(livro);
         System.out.println("Id do novo livro: "+livroNovo.getId());
     }
-
     @Test
     public void apagarLivro(){
         if(livroService.apagar(21L))
@@ -46,13 +45,13 @@ public class LivroServiceTest {
         else
             System.out.println("Erro ao apagar livro");
     }
-
     @Test
     public void alterarLivro(){
         Autor autor=autorService.buscarPorId(4L);
         Livro livro=livroService.buscarPorId(22L);
-        livro.setTitulo("Titulo Alterado");
-        livro.addCapitulo(new Capitulo("Considerações Finais",850));
+        livro.setTitulo("Titulo alterado");
+        livro.addAutor(autor);
+        livro.addCapitulo(new Capitulo("Considerações finais",850));
         livro =livroService.inserir(livro);
         System.out.println(livro);
     }

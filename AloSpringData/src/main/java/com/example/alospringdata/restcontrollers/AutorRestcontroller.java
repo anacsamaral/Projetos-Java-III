@@ -2,8 +2,11 @@ package com.example.alospringdata.restcontrollers;
 
 import com.example.alospringdata.entities.Autor;
 import com.example.alospringdata.entities.Erro;
+import com.example.alospringdata.security.JWTTokenProvider;
 import com.example.alospringdata.services.AutorService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +17,8 @@ import java.util.List;
 @RequestMapping("apis/autor")
 public class AutorRestcontroller {
     @Autowired
+    HttpServletRequest request;
+    @Autowired
     AutorService autorService;
     @GetMapping("/kw/{palavraChave}")
     public ResponseEntity<Object> buscarPorPalavraChave(@PathVariable String palavraChave){
@@ -22,6 +27,9 @@ public class AutorRestcontroller {
     }
     @GetMapping("/all")
     public ResponseEntity<Object> buscarAutores(){
+        String token=request.getHeader("Authorization");
+        if (!JWTTokenProvider.verifyToken(token))
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         List<Autor> autorList=autorService.buscarTodosAutores();
         return ResponseEntity.ok(autorList);
     }
