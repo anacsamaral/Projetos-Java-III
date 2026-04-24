@@ -1,6 +1,9 @@
 package unoeste.fipp.projetobimestral.entities;
 
+@Entity
 public class Usuario {
+    @Id
+
     private Long id;
     private String cpf;
     private String email;

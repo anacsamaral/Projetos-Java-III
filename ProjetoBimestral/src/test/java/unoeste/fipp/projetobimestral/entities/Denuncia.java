@@ -5,5 +5,6 @@ public class Denuncia {
     private String titulo;
     private String descricao;
     private char urgencia;
-
+    private Orgao orgao;
+    private Tipo tipo;
 }
