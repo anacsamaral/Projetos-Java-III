@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>unoeste.fipp</groupId>
-    <artifactId>ProjetoBimestral</artifactId>
+    <artifactId>ProjetoAtivoOperante</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ProjetoBimestral</name>
-    <description>ProjetoBimestral</description>
+    <name>ProjetoAtivoOperante</name>
+    <description>ProjetoAtivoOperante</description>
     <url/>
     <licenses>
         <license/>

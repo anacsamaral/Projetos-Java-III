@@ -1,13 +1,13 @@
-package unoeste.fipp.projetobimestral;
+package unoeste.fipp.projetoativooperante;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProjetoBimestralApplication {
+public class ProjetoAtivoOperanteApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ProjetoBimestralApplication.class, args);
+        SpringApplication.run(ProjetoAtivoOperanteApplication.class, args);
     }
 
 }

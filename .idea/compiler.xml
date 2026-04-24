@@ -6,12 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="ProjetoAtivoOperante" />
         <module name="PlayMySongs" />
         <module name="WebMovies" />
         <module name="AloSpring" />
-        <module name="AloSpringData" />
         <module name="SpringPlayMySongs" />
         <module name="webMovies" />
+        <module name="AloSpringData" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -23,6 +24,7 @@
       <module name="AloSpring" options="-parameters" />
       <module name="AloSpringData" options="-parameters" />
       <module name="PlayMySongs" options="-parameters" />
+      <module name="ProjetoAtivoOperante" options="-parameters" />
       <module name="SpringPlayMySongs" options="-parameters" />
       <module name="WebFilms" options="-parameters" />
       <module name="WebMovies" options="-parameters" />
