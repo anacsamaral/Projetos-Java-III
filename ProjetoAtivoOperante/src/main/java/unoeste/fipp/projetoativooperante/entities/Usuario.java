@@ -3,7 +3,7 @@ package unoeste.fipp.projetoativooperante.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "")
+@Table(name = "usuario")
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
